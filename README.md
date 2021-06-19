@@ -20,3 +20,4 @@ Our goal is to create a clear view of the movies funded through telefilm Canada 
 
 Our visualizations also provide anyone who is involved in a project hoping to be funded by Telefilm Canada a way to compare their movies with past funded movies and find how likely they are to get funding. 
 
+
