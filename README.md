@@ -1,2 +1,22 @@
-# telefilm-canada-data-visualization
+# Telefilm Canada Data Visualization
 Funding data of Telefilm Canada visualization
+
+
+INF8808: Data visualization\
+Presented to Prof. Thomas Hurtut\
+Faye Satari\
+Banafsheh Mohajeri\
+Mitra Lashkari\
+June 14, 2021
+
+## Overall Context
+
+Telefilm Canada Is an important organization with a mission of promoting and developing Canadian audiovisual industry. It  helped the development of Canadian film industry over the decades and gave Canadian filmmakers, especially those at the start of their road, a chance to start, and by doing so gave Canada and the world creative movies and brilliant artists and filmmakers. A clear and detailed visualization could be a very helpful way of allowing the public to discover the diverse catalog of movies funded by telefilm Canada and raise their awareness about such an important cultural organization. 
+
+
+## Goal/Objective
+
+Our goal is to create a clear view of the movies funded through telefilm Canada and their various characteristics. Our objective is to provide all film enthusiasts and anyone looking to know more about Canadian movies with a tool to look through different movies funded through telefilm Canada so they can find their next favorite movie or discover new indie artists and filmmakers to follow and support. 
+
+Our visualizations also provide anyone who is involved in a project hoping to be funded by Telefilm Canada a way to compare their movies with past funded movies and find how likely they are to get funding. 
+
