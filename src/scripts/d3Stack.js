@@ -44,9 +44,6 @@ export const draw = (dataRows) => {
         : getDataBySum(dataRows)
     const listGenre = d3.map(dataRows, d => d.Genre).keys();
     const listPeriod = d3.map(data, d => d.key).keys();
-    console.log("data", data)
-    console.log("listGenre", listGenre)
-    console.log("listPeriod", listPeriod)
 
     // Scales
     // ===================================

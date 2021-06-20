@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="Description" content="Funding data of Telefilm Canada visualization. [INF8808: Data visualization]">
-	<title>Telefilm Canada Data Visualization</title>
+	<title>D3 Telefilm Canada Data Visualization</title>
 
 	<link rel="shortcut icon" type="image/jpg" href="./favicon.ico" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,40 +25,56 @@
 				movies funded by telefilm Canada and raise their awareness about such an important cultural
 				organization.</p>
 		</section>
-		<section class="row mt-4">
-			<div class="col-12 col-md-12">
+		<section class="row mt-4 d-none">
+			<div class="col-12 col-md-6">
 				<div>
 					<form name="movieForm">
 						<span class="form-check form-check-inline">
-							<input class="form-check-input" id="movieType1" role="button" type="radio" name="movieType" value="qty" checked />
+							<input class="form-check-input" id="movieType1" role="button" type="radio" name="movieType"
+								value="qty" checked />
 							<label class="form-check-label" for="movieType1" role="button">Number of movies</label>
 						</span>
 						<span class="form-check form-check-inline">
-							<input class="form-check-input" id="movieType2" role="button" type="radio" name="movieType" value="sum" />
-							<label class="form-check-label" for="movieType2" role="button">Final value of the movies</label>
+							<input class="form-check-input" id="movieType2" role="button" type="radio" name="movieType"
+								value="sum" />
+							<label class="form-check-label" for="movieType2" role="button">Final value of the
+								movies</label>
 						</span>
 					</form>
 				</div>
 				<div id="d3Stack"></div>
 			</div>
-			<!-- <div class="col-12 col-md-5">
-					<div id="d3Table"></div>
-			</div> -->
+			<div class="col-12 col-md-6">
+				<div id="d3Table"></div>
+			</div>
 		</section>
-		<section class="row mt-4">
-			<div class="col-12">
-				<svg class="main-svg shadow-sm w-100"></svg>
+		<section class="row mt-4 d-none">
+			<div class="col-12 col-md-6">
+				<div id="d3Map"></div>
+			</div>
+			<div class="col-12 col-md-6">
+				<div id="d3Line"></div>
 			</div>
 		</section>
 		<section class="row mt-4">
-			<div class="col-12">
-				<svg class="main-svg shadow-sm w-100"></svg>
+			<div class="col-12 col-md-12">
+				<div id="d3Sankey"></div>
+			</div>
+		</section>
+		<section class="row mt-4">
+			<div class="col-12 col-md-12">
+				<div id="d3Bar"></div>
 			</div>
 		</section>
 	</main>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://d3js.org/d3.v5.js"></script>
+	<script src="https://unpkg.com/d3-array@1"></script>
+	<script src="https://unpkg.com/d3-collection@1"></script>
+	<script src="https://unpkg.com/d3-path@1"></script>
+	<script src="https://unpkg.com/d3-shape@1"></script>
+	<script src="https://unpkg.com/d3-sankey@0"></script>
 	<script type="module" src="index.js"></script>
 </body>
 

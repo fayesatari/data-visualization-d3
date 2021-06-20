@@ -5,3 +5,7 @@
 	height: auto;
 	background: none repeat scroll 0 0 white;
 }
+
+.cursor-pointer {
+	cursor: pointer;
+}
