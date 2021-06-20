@@ -1,0 +1,7 @@
+.toolTip {
+	position: absolute;
+	display: none;
+	width: auto;
+	height: auto;
+	background: none repeat scroll 0 0 white;
+}

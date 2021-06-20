@@ -7,7 +7,7 @@
 	<meta name="Description" content="Funding data of Telefilm Canada visualization. [INF8808: Data visualization]">
 	<title>Telefilm Canada Data Visualization</title>
 
-	<link rel="shortcut icon" type="image/jpg" href="./favicon.ico"/>
+	<link rel="shortcut icon" type="image/jpg" href="./favicon.ico" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="./index.css" />
 </head>
@@ -17,15 +17,33 @@
 		<section class="row mt-4">
 			<h1>Telefilm Canada Data Visualization</h1>
 			<h5>Funding data of Telefilm Canada visualization</h5>
-			<p>Telefilm Canada Is an important organization with a mission of promoting and developing Canadian audiovisual industry. It helped the development of Canadian film industry over the decades and gave Canadian filmmakers, especially those at the start of their road, a chance to start, and by doing so gave Canada and the world creative movies and brilliant artists and filmmakers. A clear and detailed visualization could be a very helpful way of allowing the public to discover the diverse catalog of movies funded by telefilm Canada and raise their awareness about such an important cultural organization.</p>
+			<p>Telefilm Canada Is an important organization with a mission of promoting and developing Canadian
+				audiovisual industry. It helped the development of Canadian film industry over the decades and gave
+				Canadian filmmakers, especially those at the start of their road, a chance to start, and by doing so
+				gave Canada and the world creative movies and brilliant artists and filmmakers. A clear and detailed
+				visualization could be a very helpful way of allowing the public to discover the diverse catalog of
+				movies funded by telefilm Canada and raise their awareness about such an important cultural
+				organization.</p>
 		</section>
 		<section class="row mt-4">
-			<div class="col-12 col-md-6">
-				<svg class="main-svg shadow-sm w-100"></svg>
+			<div class="col-12 col-md-12">
+				<div>
+					<form name="movieForm">
+						<span class="form-check form-check-inline">
+							<input class="form-check-input" id="movieType1" role="button" type="radio" name="movieType" value="qty" checked />
+							<label class="form-check-label" for="movieType1" role="button">Number of movies</label>
+						</span>
+						<span class="form-check form-check-inline">
+							<input class="form-check-input" id="movieType2" role="button" type="radio" name="movieType" value="sum" />
+							<label class="form-check-label" for="movieType2" role="button">Final value of the movies</label>
+						</span>
+					</form>
+				</div>
+				<div id="d3Stack"></div>
 			</div>
-			<div class="col-12 col-md-6">
-				<svg class="main-svg shadow-sm w-100"></svg>
-			</div>
+			<!-- <div class="col-12 col-md-5">
+					<div id="d3Table"></div>
+			</div> -->
 		</section>
 		<section class="row mt-4">
 			<div class="col-12">
