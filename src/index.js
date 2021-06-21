@@ -23,12 +23,14 @@ import * as d3Bar from './scripts/d3Bar.js'
 	 * @returns {any}
 	 */
 	function build() {
+		console.log("1- Reading csv")
 		d3
 			.text('telefilmCanada.csv')
 			.then((dataText) => {
 				// Read data and save in dataRow
 				const dataRows = d3.csvParse(dataText)
-				console.log("dataRows", dataRows)
+				console.log("2- The csv data", dataRows)
+				console.log("3- Loading visualization", dataRows)
 
 				// Draw objects
 				d3Table.draw(d3.csvParseRows(dataText).slice(0, 20))
