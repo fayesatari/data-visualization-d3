@@ -4,7 +4,7 @@
   "description": "Funding data of Telefilm Canada visualization",
   "main": "src/index.js",
   "scripts": {
-    "build": "parcel build ./src/index.html --out-dir docs --public-url telefilm-canada-data-visualization",
+    "build": "parcel build ./src/index.html --out-dir docs --public-url https://fayesatari.github.io/telefilm-canada-data-visualization/",
     "start": "parcel ./src/index.html --log-level=2 --port=8080 --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
