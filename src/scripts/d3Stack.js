@@ -73,7 +73,7 @@ export const draw = (dataRows) => {
     var tooltip = d3
         .select("#d3Stack")
         .append("div")
-        .attr("class", "toolTip shadow p-2 text-center rounded")
+        .attr("class", "tooltip shadow p-2 text-center rounded")
 
     // Draw stackchart
     // ===================================

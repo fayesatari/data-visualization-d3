@@ -33,7 +33,7 @@ const getSankeyData = (dataRows) => {
     // Create color scale
     const colorScale = d3
         .scaleOrdinal()
-        .range(["#6ea8fe", "#052c65"]) //blue-300 ro blue-800
+        .range(["#052c65", "#6ea8fe"]) //blue-800 to blue-300
         .domain(listNodes.slice(0, listNodes.length - 4))
 
 
@@ -88,12 +88,11 @@ export const draw = (dataRows) => {
     const width = 1000
     const height = 900
     const dataSankey = getSankeyData(dataRows)
-    console.log("dataSankey", dataSankey)
 
     // Set the sankey diagram properties
     const d3Sankey = d3
         .sankey()
-        .nodeAlign(d3.sankeyCenter)
+        .nodeAlign(d3.sankeyJustify)
         .nodeWidth(36)
         .nodePadding(40)
         .extent([[0, 16], [width, height - 16]])
@@ -107,7 +106,6 @@ export const draw = (dataRows) => {
     const d3Svg = d3
         .select("#d3Sankey")
         .attr("class", "shadow-sm w-100")
-        .style("background", "#fefefe")
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -145,9 +143,16 @@ export const draw = (dataRows) => {
                 .attr('stop-color', d => d.color);
             return `url(#${gradientID})`;
         })
-        .style('stroke-opacity', 0.33)
-        .on("mousemove", function (d) { d3.select(this).style('stroke-opacity', 1) })
-        .on("mouseout", function (d) { d3.select(this).style('stroke-opacity', 0.33) })
+        .style('stroke-opacity', 1)
+        .on("mousemove", function (d) {
+            d3.selectAll("#d3Sankey path").style('stroke-opacity', 0.33)
+            d3.selectAll("#d3Sankey rect").style('fill-opacity', 0.33)
+            d3.select(this).style('stroke-opacity', 1)
+        })
+        .on("mouseout", function (d) {
+            d3.selectAll("#d3Sankey path").style('stroke-opacity', 1)
+            d3.selectAll("#d3Sankey rect").style('fill-opacity', 1)
+        })
 
     d3Link
         .append("title")
@@ -165,9 +170,16 @@ export const draw = (dataRows) => {
         .attr("width", d => d.x1 - d.x0 - 2)
         .attr("height", d => d.y1 - d.y0)
         .attr("fill", d => d.color)
-        .style('fill-opacity', 0.80)
-        .on("mousemove", function (d) { d3.select(this).style('fill-opacity', 1) })
-        .on("mouseout", function (d) { d3.select(this).style('fill-opacity', 0.80) })
+        .style('fill-opacity', 1)
+        .on("mousemove", function (d) {
+            d3.selectAll("#d3Sankey path").style('stroke-opacity', 0.33)
+            d3.selectAll("#d3Sankey rect").style('fill-opacity', 0.33)
+            d3.select(this).style('fill-opacity', 1)
+        })
+        .on("mouseout", function (d) {
+            d3.selectAll("#d3Sankey path").style('stroke-opacity', 1)
+            d3.selectAll("#d3Sankey rect").style('fill-opacity', 1)
+        })
         .append("title")
         .text(d => `${d.name}\n${d.value.toLocaleString()} Movies`);
 
