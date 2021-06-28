@@ -172,7 +172,8 @@ export const update = (dataRows, d3TableUpdateFilter) => {
         .on("click", function (d,a,b,c,e) {
             const dataParent = d3.select(this.parentNode).datum()
             const genre = dataParent.key
-            if(d3TableUpdateFilter) d3TableUpdateFilter(dataRows, genre)
+            const period = d.data.key
+            if(d3TableUpdateFilter) d3TableUpdateFilter(dataRows, genre, period)
         }), 
 
     // X-Axis

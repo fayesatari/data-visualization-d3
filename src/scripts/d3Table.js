@@ -1,5 +1,6 @@
 import d3Legend from 'd3-svg-legend';
-let listFilter = []
+let listFilterGenre = []
+let listFilterPeriod = []
 
 /**
  * Draw a table
@@ -25,10 +26,11 @@ export const draw = (dataRows) => {
         .attr('class', 'thead-dark')
         .append("tr")
         .selectAll("th")
-        .data(d => ["Title", "Genre", "Language", "Province"])
+        .data(d => ["Title", "Genre", "Period", "Language", "Province"])
         //.data(headerList)
         .enter()
         .append("th")
+        .style("width", "20%")
         .text(function (d) {
             return d;
         })
@@ -53,7 +55,11 @@ export const draw = (dataRows) => {
 
 export const update = (dataRows) => {
     const tableBody = d3.select("#d3Table table tbody")
-    const dataRowsAfterFilter = dataRows.filter(row => listFilter.length < 1 || listFilter.includes(row.Genre))
+    const dataRowsAfterFilter = dataRows
+        .filter(row =>
+            (listFilterGenre.length < 1 || listFilterGenre.includes(row.Genre)) &&
+            (listFilterPeriod.length < 1 || listFilterPeriod.includes(row.Period)))
+        .slice(0, 10)
 
     tableBody
         .selectAll("tr")
@@ -64,7 +70,7 @@ export const update = (dataRows) => {
         .enter()
         .append("tr")
         .selectAll("td")
-        .data(d => [d.Title, d.Genre, d.Language, d.Province])
+        .data(d => [d.Title, d.Genre, d.Period, d.Language, d.Province])
         .enter()
         .append("td")
         .on("mouseover", function () {
@@ -81,6 +87,8 @@ export const update = (dataRows) => {
         .text(d => d)
         .attr("class", "text-start")
 
+    console.log("kar mikoneh?", [].concat(listFilterGenre, listFilterPeriod))
+
     // Draw filter tags
     var offserHeight = 0
     var offsetWidth = 0
@@ -91,7 +99,7 @@ export const update = (dataRows) => {
     d3
         .select("#d3TableFilter svg")
         .selectAll("g.tag")
-        .data(listFilter)
+        .data([].concat(listFilterGenre, listFilterPeriod))
         .enter()
         .append("g")
         .attr("class", "tag")
@@ -119,7 +127,8 @@ export const update = (dataRows) => {
                 .attr("height", 20)
                 .attr("class", "cursor-pointer")
                 .on("click", function (d) {
-                    listFilter = listFilter.filter(lf => lf != d)
+                    if (listFilterGenre.includes(d)) listFilterGenre = listFilterGenre.filter(lf => lf != d)
+                    if (listFilterPeriod.includes(d)) listFilterPeriod = listFilterPeriod.filter(lf => lf != d)
                     update(dataRows)
                 })
             offsetWidth += textWidth
@@ -133,10 +142,17 @@ export const update = (dataRows) => {
 
 }
 
-export const updateFilter = (dataRows, dataFilter) => {
-    // Update data
-    listFilter.push(dataFilter)
-    listFilter = d3.map(listFilter, lf => lf).keys()
+export const updateFilter = (dataRows, dataFilterGenre, dataFilterPeriod) => {
+
+    console.log("dataParent", dataFilterGenre, dataFilterPeriod)
+
+    // Update data Genre
+    listFilterGenre.push(dataFilterGenre)
+    listFilterGenre = d3.map(listFilterGenre, lf => lf).keys()
+
+    // Update data Priod
+    listFilterPeriod.push(dataFilterPeriod)
+    listFilterPeriod = d3.map(listFilterPeriod, lf => lf).keys()
 
     // Update/redraw table
     update(dataRows)
