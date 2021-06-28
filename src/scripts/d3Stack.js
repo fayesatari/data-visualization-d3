@@ -23,6 +23,45 @@ const getDataBySum = (dataRows) =>
  * @returns {any}
  */
 export const draw = (dataRows) => {
+    // Append tooltip
+    // ===================================
+    var tooltip = d3
+        .select("#d3Stack")
+        .append("div")
+        .attr("class", "tooltip shadow p-2 text-center rounded")
+        .style("opacity", "0.9")
+
+    //  Append stackchart
+    // ===================================
+    const svg = d3
+        .select("#d3Stack")
+        .attr("class", "shadow-sm w-100")
+        .append("svg")
+
+    svg
+        .append("g")
+        .attr("class", "chart")
+
+
+    // Append Axis & Legend
+    // ===================================
+    svg
+        .append("g")
+        .attr("class", "x-axis")
+    svg
+        .append("g")
+        .attr("class", "y-axis")
+
+    svg
+        .append("g")
+        .attr("class", "legend")
+
+    // Draw
+    // ===================================
+    update(dataRows)
+}
+
+export const update = (dataRows) => {
     const width = 640
     const height = 800
     const speed = 1000
@@ -44,7 +83,7 @@ export const draw = (dataRows) => {
         : getDataBySum(dataRows)
     const listGenre = d3.map(dataRows, d => d.Genre).keys();
     const listPeriod = d3.map(data, d => d.key).keys();
-
+    
     // Scales
     // ===================================
     const y = d3
@@ -68,24 +107,20 @@ export const draw = (dataRows) => {
         .value((d, key) => d.values.find(v => v.key === key)?.value ?? 0)
         (data)
 
-    // Draw tooltip
+    // Elements
     // ===================================
-    var tooltip = d3
-        .select("#d3Stack")
-        .append("div")
-        .attr("class", "tooltip shadow p-2 text-center rounded")
+    const tooltip = d3
+    .select("#d3Stack div.tooltip")
 
-    // Draw stackchart
-    // ===================================
     const svg = d3
-        .select("#d3Stack")
-        .attr("class", "shadow-sm w-100")
-        .append("svg")
+        .select("#d3Stack svg")
         .attr("width", width)
         .attr("height", height)
 
+    // Draw stackchart
+    // ===================================
     svg
-        .append("g")
+        .select("g.chart")
         .selectAll("g")
         .data(series)
         .join("g")
@@ -93,21 +128,28 @@ export const draw = (dataRows) => {
         .selectAll("rect")
         .data(d => d)
         .join("rect")
-        .attr("x", d => x(d[0]))
+        .attr("class", "cursor-pointer")
         .attr("y", d => y(d.data.key))
-        .attr("width", d => x(d[1]) - x(d[0]))
         .attr("height", y.bandwidth())
-        .attr("role", "button")
+        .transition()
+        //.duration(25)
+        .delay((d,i) => i * 25)
+        .ease(d3.easeLinear)
+        .attr("width", d => x(d[1]) - x(d[0]))
+        .attr("x", d => x(d[0]))
+        
+    svg
+        .selectAll("g.chart rect")
         .on("mousemove", function (d) {
             const dataParent = d3.select(this.parentNode).datum()
             const genre = dataParent.key
             const period = d.data.key
             const qty = d.data.values.find(v => v.key === genre).value
             // Show Tooltip
+            tooltip.html(`<div>Number of movie in</div><div><b>${genre}</b> at <b>${period}</b>:</div><b>${qty}</b>`);
             tooltip.style("left", d3.event.pageX + "px");
             tooltip.style("top", d3.event.pageY - 90 + "px");
             tooltip.style("display", "inline-block");
-            tooltip.html(`<div>Number of movie in</div><div><b>${genre}</b> at <b>${period}</b>:</div><b>${qty}</b>`);
 
             // Highlight this rect
             svg
@@ -131,19 +173,15 @@ export const draw = (dataRows) => {
     // X-Axis
     // ===================================
     svg
-        .append("g")
+        .select("g.x-axis")
         .attr("transform", `translate(0, ${height - margin.bottom})`)
-        .transition()
-        .duration(speed)
         .call(d3.axisBottom(x))
 
     // Y-Axis
     // ===================================
     svg
-        .append("g")
+        .select("g.y-axis")
         .attr("transform", `translate(${margin.left},0)`)
-        .transition()
-        .duration(speed)
         .call(d3.axisLeft(y))
 
     // Legend
@@ -158,7 +196,7 @@ export const draw = (dataRows) => {
         .shapePadding(5)
 
     svg
-        .append("g")
+        .select("g.legend")
         .attr("transform", `translate(20, ${height - margin.bottom + 50})`)
         .call(legend)
     svg

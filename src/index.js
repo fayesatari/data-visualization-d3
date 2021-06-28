@@ -38,6 +38,11 @@ import * as d3Bar from './scripts/d3Bar.js'
 				d3Map.draw(dataRows)
 				d3Sankey.draw(dataRows)
 				d3Bar.draw(dataRows)
+
+				// Events
+				d3.selectAll("input[name='movieType']").on("change", function(){
+					d3Stack.update(dataRows)
+				});
 			})
 	}
 })(d3)
