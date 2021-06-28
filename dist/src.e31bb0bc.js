@@ -9793,7 +9793,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.draw = void 0;
+exports.update = exports.draw = void 0;
 
 var _d3SvgLegend = _interopRequireDefault(require("d3-svg-legend"));
 
@@ -9829,6 +9829,26 @@ var getDataBySum = function getDataBySum(dataRows) {
 
 
 var draw = function draw(dataRows) {
+  // Append tooltip
+  // ===================================
+  var tooltip = d3.select("#d3Stack").append("div").attr("class", "tooltip shadow p-2 text-center rounded"); //  Append stackchart
+  // ===================================
+
+  var svg = d3.select("#d3Stack").attr("class", "shadow-sm w-100").append("svg");
+  svg.append("g").attr("class", "stack-chart"); // Append Axis & Legend
+  // ===================================
+
+  svg.append("g").attr("class", "x-axis");
+  svg.append("g").attr("class", "y-axis");
+  svg.append("g").attr("class", "legend"); // Draw
+  // ===================================
+
+  update(dataRows);
+};
+
+exports.draw = draw;
+
+var update = function update(dataRows) {
   var _document$movieForm$m, _document, _document$movieForm, _document$movieForm$m2;
 
   var width = 640;
@@ -9851,7 +9871,8 @@ var draw = function draw(dataRows) {
   }).keys();
   var listPeriod = d3.map(data, function (d) {
     return d.key;
-  }).keys(); // Scales
+  }).keys();
+  console.log("movieType", movieType, data); // Scales
   // ===================================
 
   var y = d3.scaleBand().range([margin.top, height - margin.bottom]).padding(0.3).domain(d3.map(data, function (d) {
@@ -9869,14 +9890,14 @@ var draw = function draw(dataRows) {
     return (_d$values$find$value = (_d$values$find = d.values.find(function (v) {
       return v.key === key;
     })) === null || _d$values$find === void 0 ? void 0 : _d$values$find.value) !== null && _d$values$find$value !== void 0 ? _d$values$find$value : 0;
-  })(data); // Draw tooltip
+  })(data); // Elements
   // ===================================
 
-  var tooltip = d3.select("#d3Stack").append("div").attr("class", "tooltip shadow p-2 text-center rounded"); // Draw stackchart
+  var tooltip = d3.select("#d3Stack div.tooltip");
+  var svg = d3.select("#d3Stack svg").attr("width", width).attr("height", height); // Draw stackchart
   // ===================================
 
-  var svg = d3.select("#d3Stack").attr("class", "shadow-sm w-100").append("svg").attr("width", width).attr("height", height);
-  svg.append("g").selectAll("g").data(series).join("g").attr("fill", function (d) {
+  svg.select("g.stack-chart").selectAll("g").data(series).join("g").attr("fill", function (d) {
     return z(d.key);
   }).selectAll("rect").data(function (d) {
     return d;
@@ -9909,20 +9930,32 @@ var draw = function draw(dataRows) {
   }); // X-Axis
   // ===================================
 
-  svg.append("g").attr("transform", "translate(0, ".concat(height - margin.bottom, ")")).transition().duration(speed).call(d3.axisBottom(x)); // Y-Axis
+  svg.select("g.x-axis").attr("transform", "translate(0, ".concat(height - margin.bottom, ")")) // .transition()
+  // .duration(speed)
+  // .ease(d3.easeLinear)
+  .call(d3.axisBottom(x)); // Y-Axis
   // ===================================
 
-  svg.append("g").attr("transform", "translate(".concat(margin.left, ",0)")).transition().duration(speed).call(d3.axisLeft(y)); // Legend
+  svg.select("g.y-axis").attr("transform", "translate(".concat(margin.left, ",0)")) // .transition()
+  // .duration(speed)
+  // .ease(d3.easeLinear)
+  .call(d3.axisLeft(y)); // Legend
   // ===================================
 
   var legend = _d3SvgLegend.default.legendColor() //.title("Legend")
   .orient('horizontal').shape('circle').scale(z).labelAlign("start").shapePadding(5);
 
-  svg.append("g").attr("transform", "translate(20, ".concat(height - margin.bottom + 50, ")")).call(legend);
-  svg.selectAll(".legendCells text").style("font-size", "9px").attr("transform", "translate(-4,14) rotate(90)");
+  svg //.select("g.legend")
+  .append("g").attr("transform", "translate(20, ".concat(height - margin.bottom + 50, ")")).transition(); // .duration(speed)
+  // .ease(d3.easeLinear)
+  // .call(legend)
+
+  svg.selectAll(".legendCells text").style("font-size", "9px").attr("transform", "translate(-4,14) rotate(90)"); // .transition()
+  // .duration(speed)
+  // .ease(d3.easeLinear)
 };
 
-exports.draw = draw;
+exports.update = update;
 },{"d3-svg-legend":"../node_modules/d3-svg-legend/indexRollupNext.js"}],"scripts/d3Map.js":[function(require,module,exports) {
 "use strict";
 
@@ -10384,7 +10417,11 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
       d3Stack.draw(dataRows);
       d3Map.draw(dataRows);
       d3Sankey.draw(dataRows);
-      d3Bar.draw(dataRows);
+      d3Bar.draw(dataRows); // Events
+
+      d3.selectAll("input[name='movieType']").on("change", function () {
+        d3Stack.update(dataRows);
+      });
     });
   }
 })(d3);
@@ -10416,7 +10453,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53367" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54792" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
