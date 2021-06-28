@@ -21,7 +21,6 @@ const getSankeyColor = (colorScale, nodeName) => {
 
 
 const getSankeyData = (dataRows) => {
-    //console.log("sankydata", dataRows)
     let result = {};
 
     // Create node lists

@@ -22,7 +22,7 @@ const getDataBySum = (dataRows) =>
  * @param {any} dataRows - A array of all rows
  * @returns {any}
  */
-export const draw = (dataRows) => {
+export const draw = (dataRows, d3TableUpdateFilter) => {
     // Append tooltip
     // ===================================
     var tooltip = d3
@@ -58,10 +58,10 @@ export const draw = (dataRows) => {
 
     // Draw
     // ===================================
-    update(dataRows)
+    update(dataRows, d3TableUpdateFilter)
 }
 
-export const update = (dataRows) => {
+export const update = (dataRows, d3TableUpdateFilter) => {
     const width = 640
     const height = 800
     const speed = 1000
@@ -169,6 +169,11 @@ export const update = (dataRows) => {
                 .selectAll("rect")
                 .style("opacity", 1)
         })
+        .on("click", function (d,a,b,c,e) {
+            const dataParent = d3.select(this.parentNode).datum()
+            const genre = dataParent.key
+            if(d3TableUpdateFilter) d3TableUpdateFilter(dataRows, genre)
+        }), 
 
     // X-Axis
     // ===================================

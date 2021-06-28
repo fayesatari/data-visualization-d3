@@ -27,18 +27,20 @@
 		</section>
 		<section class="row mt-4">
 			<div class="col-12 col-md-6">
-				<div>
-					<form name="movieForm" class="btn-group">
-							<input class="btn-check" id="movieType1" role="button" type="radio" name="movieType" value="qty" checked />
-							<label class="btn btn-outline-secondary" for="movieType1" role="button">Number of movies</label>
-							<input class="btn-check" id="movieType2" role="button" type="radio" name="movieType" value="sum" />
-							<label class="btn btn-outline-secondary" for="movieType2" role="button">Final value of the movies</label>
+				<div id="d3StackFilter">
+					<form name="movieForm" class="btn-group float-start">
+						<input class="btn-check" id="movieType1" role="button" type="radio" name="movieType" value="qty" checked />
+						<label class="btn btn-outline-secondary" for="movieType1" role="button">Number of movies</label>
+						<input class="btn-check" id="movieType2" role="button" type="radio" name="movieType" value="sum" />
+						<label class="btn btn-outline-secondary" for="movieType2" role="button">Final value of the movies</label>
 					</form>
 				</div>
 				<div id="d3Stack"></div>
 			</div>
 			<div class="col-12 col-md-6">
+				<div id="d3TableFilter"></div>
 				<div id="d3Table"></div>
+				<div id="d3TableFooter"></div>
 			</div>
 		</section>
 		<section class="row mt-4">

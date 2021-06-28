@@ -23,25 +23,22 @@ import * as d3Bar from './scripts/d3Bar.js'
 	 * @returns {any}
 	 */
 	function build() {
-		console.log("1- Reading csv")
 		d3
 			.text('telefilmCanada.csv')
 			.then((dataText) => {
 				// Read data and save in dataRow
 				const dataRows = d3.csvParse(dataText)
-				console.log("2- The csv data", dataRows)
-				console.log("3- Loading visualization", dataRows)
 
 				// Draw objects
-				d3Table.draw(d3.csvParseRows(dataText).slice(0, 20))
-				d3Stack.draw(dataRows)
+				d3Table.draw(dataRows)
+				d3Stack.draw(dataRows, d3Table.updateFilter)
 				d3Map.draw(dataRows)
 				d3Sankey.draw(dataRows)
 				d3Bar.draw(dataRows)
 
-				// Events
+				// Event: d3Stack switch
 				d3.selectAll("input[name='movieType']").on("change", function(){
-					d3Stack.update(dataRows)
+					d3Stack.update(dataRows, d3Table.updateFilter)
 				});
 			})
 	}

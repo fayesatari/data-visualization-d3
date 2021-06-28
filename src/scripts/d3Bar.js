@@ -27,7 +27,6 @@ const drawNest = (dataNest, scaleColor, listTypes, width) => {
         .range([_HEIGHT, 0])
         .domain([0, maxTypesValue])
 
-    console.log(dataNest)
     // Draw SVG
     // ===================================
     const d3SVG = d3
