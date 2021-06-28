@@ -25,7 +25,7 @@ const getSankeyData = (dataRows) => {
 
     // Create node lists
     const listNodes = d3
-        .map(dataRows, d => d.Purpose)
+        .map(dataRows, d => d.Purpose2)
         .keys()
         .concat(_STATIC_NODES)
 
@@ -48,7 +48,7 @@ const getSankeyData = (dataRows) => {
     result.links = []
     const nestMovies = d3
         .nest()
-        .key(d => d.Purpose)
+        .key(d => d.Purpose2)
         .rollup(d => d.length)
         .entries(dataRows)
     d3.map(nestMovies, d =>
@@ -62,7 +62,7 @@ const getSankeyData = (dataRows) => {
     // Collect Links - Purpose<->Contracts
     const nestContract = d3
         .nest()
-        .key(d => d.Purpose)
+        .key(d => d.Purpose2)
         .key(d => {
             if (d.Comments.toLowerCase().includes("signed") > 0) return _CONTRACT_SIGNED
             else if (d.Comments.trim() === "0") return _CONTRACT_UNSIGNED
