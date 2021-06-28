@@ -22,7 +22,6 @@ const mouseleave = (g, d, geoPath) => {
         .attr("fill", "#ced4da") //gray-400
 
 }
-
 const drawMap = (dataMap, dataRows, geoPath) => {
 
     d3
