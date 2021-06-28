@@ -192,5 +192,5 @@ export const draw = (dataRows) => {
     drawTooltip()
     drawNest(nestOverall, scaleColor, listTypes, _WIDTH, _HEIGHT)
     drawNest(nestQuarters, scaleColor, listTypes, _WIDTH / 2, _HEIGHT)
-    drawLegend(scaleColor, _WIDTH, _HEIGHT)
+    //drawLegend(scaleColor, _WIDTH, _HEIGHT)
 }
