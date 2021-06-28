@@ -27,7 +27,8 @@ import * as d3Bar from './scripts/d3Bar.js'
 			.text('telefilmCanada.csv')
 			.then((dataText) => {
 				// Read data and save in dataRow
-				const dataRows = d3.csvParse(dataText)
+				let dataRows = d3.csvParse(dataText)
+				dataRows = helper.cleanData(dataRows)
 
 				// Draw objects
 				d3Table.draw(dataRows)
