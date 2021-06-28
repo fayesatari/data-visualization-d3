@@ -3,6 +3,7 @@ const _CONTRACT_SIGNED = "Signed contract"
 const _CONTRACT_UNSIGNED = "Without contract"
 const _CONTRACT_UNKNOWN = "Unknown status"
 const _STATIC_NODES = [_MOVIES, _CONTRACT_SIGNED, _CONTRACT_UNSIGNED, _CONTRACT_UNKNOWN]
+const _MIN_THICKNESS = 5
 
 const getSankeyColor = (colorScale, nodeName) => {
     switch (nodeName) {
@@ -94,7 +95,10 @@ export const draw = (dataRows) => {
         .nodeAlign(d3.sankeyJustify)
         .nodeWidth(36)
         .nodePadding(40)
-        .extent([[0, 16], [width, height - 16]])
+        .extent([
+            [0, 16],
+            [width, height - 16]
+        ])
 
     const d3SankeyValues = d3Sankey({
         nodes: dataSankey.nodes.map(d => Object.assign({}, d)),
@@ -124,7 +128,7 @@ export const draw = (dataRows) => {
         .append("path")
         .style('fill', 'none')
         .attr("d", d3.sankeyLinkHorizontal())
-        .attr("stroke-width", d => Math.max(1, d.width))
+        .attr("stroke-width", d => Math.max(_MIN_THICKNESS, d.width))
         .attr("stroke", d => {
             const gradientID = `gradient${d.index}`;
             const d3LinearGradient = d3Defs
@@ -132,9 +136,14 @@ export const draw = (dataRows) => {
                 .attr('id', gradientID);
             d3LinearGradient
                 .selectAll('stop')
-                .data([
-                    { offset: '10%', color: d.source.color },
-                    { offset: '90%', color: d.target.color }
+                .data([{
+                        offset: '10%',
+                        color: d.source.color
+                    },
+                    {
+                        offset: '90%',
+                        color: d.target.color
+                    }
                 ])
                 .enter()
                 .append('stop')
@@ -165,9 +174,9 @@ export const draw = (dataRows) => {
         .enter()
         .append("rect")
         .attr("x", d => d.x0 + 1)
-        .attr("y", d => d.y0)
+        .attr("y", d => d.y0 - ((_MIN_THICKNESS > d.y1 - d.y0) ? (_MIN_THICKNESS / 2) - 1 : 0))
         .attr("width", d => d.x1 - d.x0 - 2)
-        .attr("height", d => d.y1 - d.y0)
+        .attr("height", d => Math.max(_MIN_THICKNESS, d.y1 - d.y0))
         .attr("fill", d => d.color)
         .style('fill-opacity', 1)
         .on("mousemove", function (d) {
@@ -185,7 +194,11 @@ export const draw = (dataRows) => {
     // Draw text
     d3Svg
         .append("g")
-        .style("font-size", "11px")
+        .style("font-size", "12px")
+        .style("font-weight", "500")
+        .style("text-shadow", "0px 0px 6px #fff")
+        .style("fill", "black")
+        .attr("fill", "black")
         .attr("pointer-events", "none")
         .selectAll("text")
         .data(d3SankeyValues.nodes)
