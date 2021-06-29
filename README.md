@@ -1,13 +1,15 @@
 # Telefilm Canada Data Visualization
 Funding data of Telefilm Canada visualization
 
-
 INF8808: Data visualization\
 Presented to Prof. Thomas Hurtut\
 Faye Satari\
 Banafsheh Mohajeri\
 Mitra Lashkari\
 June 14, 2021
+
+[![Telefilm Canada Data Visualization (Presentation)](https://img.youtube.com/vi/f_D0IoAoNbg/0.jpg)](https://www.youtube.com/watch?v=f_D0IoAoNbg)
+
 
 ## Overall Context
 
