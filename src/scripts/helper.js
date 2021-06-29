@@ -16,8 +16,8 @@ export function cleanData(dataRows) {
         else if (d.Purpose.startsWith("Theatrical")) d.Purpose2 = "Theatrical Program"
         else d.Purpose2 = d.Purpose
         // Type
-        if (d.Type("Avance")) d.Type = "Advance"
-        if (d.Type("Investissement")) d.Type = "Investment"
+        if (d.Type === "Avance") d.Type = "Advance"
+        if (d.Type === "Investissement") d.Type = "Investment"
         return d;
     })
     return result
