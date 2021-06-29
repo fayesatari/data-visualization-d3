@@ -1,5 +1,5 @@
 # Telefilm Canada Data Visualization
-Funding data of Telefilm Canada visualization
+Funding data of Telefilm Canada Visualization with D3
 
 INF8808: Data visualization\
 Presented to Prof. Thomas Hurtut\
