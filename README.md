@@ -10,7 +10,6 @@ June 14, 2021
 
 [![Telefilm Canada Data Visualization (Presentation)](https://img.youtube.com/vi/f_D0IoAoNbg/0.jpg)](https://www.youtube.com/watch?v=f_D0IoAoNbg)
 
-
 ## Overall Context
 
 Telefilm Canada Is an important organization with a mission of promoting and developing Canadian audiovisual industry. It  helped the development of Canadian film industry over the decades and gave Canadian filmmakers, especially those at the start of their road, a chance to start, and by doing so gave Canada and the world creative movies and brilliant artists and filmmakers. A clear and detailed visualization could be a very helpful way of allowing the public to discover the diverse catalog of movies funded by telefilm Canada and raise their awareness about such an important cultural organization. 
