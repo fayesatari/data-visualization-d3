@@ -59,7 +59,6 @@ export const update = (dataRows) => {
         .filter(row =>
             (listFilterGenre.length < 1 || listFilterGenre.includes(row.Genre)) &&
             (listFilterPeriod.length < 1 || listFilterPeriod.includes(row.Period)))
-        .slice(0, 10)
 
     tableBody
         .selectAll("tr")
