@@ -87,8 +87,6 @@ export const update = (dataRows) => {
         .text(d => d)
         .attr("class", "text-start")
 
-    console.log("kar mikoneh?", [].concat(listFilterGenre, listFilterPeriod))
-
     // Draw filter tags
     var offserHeight = 0
     var offsetWidth = 0

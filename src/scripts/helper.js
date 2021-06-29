@@ -1,6 +1,6 @@
 export function cleanData(dataRows) {
-    console.log("dataRows", dataRows)
     const result = dataRows.map(d => {
+        if (d.Language === "0" || d.Language === "") d.Language = "N/A"
         if (d.Genre === "0" || d.Genre === "") d.Genre = "N/A"
         if (d.Province === "0" || d.Province === "") d.Genre = "Other"
         else if (d.Province === "Newfoundland/Labrad." || d.Province === "Newfoundland/Labrador") d.Province = "Newfoundland & Labrador"
@@ -16,6 +16,5 @@ export function cleanData(dataRows) {
         else d.Purpose2 = d.Purpose
         return d;
     })
-    console.log("result", result)
     return result
 }

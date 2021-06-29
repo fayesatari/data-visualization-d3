@@ -1,3 +1,6 @@
+const width = 1000
+const height = 600
+
 const mouseover = (g, d, geoPath) => {
     const d3Provinces = d3.select(g)
 
@@ -36,11 +39,11 @@ const drawMap = (dataMap, dataRows, geoPath) => {
         .attr("stroke", "#6c757d") //gray-600
         .attr("fill", "#ced4da") //gray-400
 }
-
 const getQtyByProvinceName = (dataMarkers, provinceName) =>
     dataMarkers.find(dm => dm.key.toLowerCase() === provinceName.toLowerCase())?.value ?? 0
 
-const drawMarkers = (dataMap, dataRows, geoPath) => {
+const drawMarkers = (dataMap, dataRows, geoPath, d3LineChartUpdateFilter, d3PieUpdateFilter) => {
+    
     const dataMarkers = d3
         .nest()
         .key(d => d.Province)
@@ -72,6 +75,11 @@ const drawMarkers = (dataMap, dataRows, geoPath) => {
         .attr("class", "cursor-pointer")
         .on("mouseover", function (d) { mouseover(this.parentNode, d, geoPath) })
         .on("mouseleave", function (d) { mouseleave(this.parentNode, d, geoPath) })
+        .on("click", function (d) { 
+            d3LineChartUpdateFilter(dataRows, d) 
+            d3PieUpdateFilter(dataRows, d) 
+        })
+        
     d3Provinces.
         append("text", "circle")
         .text(d => getQtyByProvinceName(dataMarkers, d.properties.name))
@@ -83,8 +91,11 @@ const drawMarkers = (dataMap, dataRows, geoPath) => {
         .attr("class", "cursor-pointer")
         .on("mouseover", function (d) { mouseover(this.parentNode, d, geoPath) })
         .on("mouseleave", function (d) { mouseleave(this.parentNode, d, geoPath) })
+        .on("click", function (d) { 
+            d3LineChartUpdateFilter(dataRows, d) 
+            d3PieUpdateFilter(dataRows, d)             
+        })
 }
-
 const drawTooltip = (dataMap, dataRows, geoPath) => {
     // Add tooltip
     d3
@@ -93,36 +104,34 @@ const drawTooltip = (dataMap, dataRows, geoPath) => {
         .attr("id", "d3Map-tooltip")
 }
 
-export const draw = (dataRows) => {
+export const draw = (dataRows, d3LineChartUpdateFilter, d3PieUpdateFilter) => {
     // Read map-data from jason
     d3.json('canada.geo.json')
         .then(dataMap => {
-            const width = 1000
-            const height = 900
-
             // Calculate geo
             const geoProjection = d3
                 .geoMercator()
                 .rotate([100, -45])
                 .center([5, 20])
-                .scale(1000)
+                .scale(width)
                 .translate([width / 2, height / 2])
 
             const geoPath = d3
                 .geoPath()
                 .projection(geoProjection);
 
-            // Draw main svg
+            // Append main svg
             const svg = d3
                 .select("#d3Map")
                 .attr("class", "shadow-sm w-100")
                 .append("svg")
-                .attr("width", width)
+                .attr("width", "100%")
                 .attr("height", height)
+                .attr("viewBox", `0 0 ${width} ${height}`)
 
             // draw sections
             drawMap(dataMap, dataRows, geoPath)
-            drawMarkers(dataMap, dataRows, geoPath)
+            drawMarkers(dataMap, dataRows, geoPath, d3LineChartUpdateFilter, d3PieUpdateFilter)
             drawTooltip(dataMap, dataRows, geoPath)
         })
         .catch(ex => alert("Error read json: " + (ex?.message ?? "")))

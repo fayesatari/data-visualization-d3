@@ -5,6 +5,7 @@ import * as d3Table from './scripts/d3Table.js'
 import * as d3Stack from './scripts/d3Stack.js'
 import * as d3Map from './scripts/d3Map.js'
 import * as d3LineChart from './scripts/d3LineChart.js'
+import * as d3Pie from './scripts/d3Pie.js'
 import * as d3Sankey from './scripts/d3Sankey.js'
 import * as d3Bar from './scripts/d3Bar.js'
 
@@ -33,8 +34,9 @@ import * as d3Bar from './scripts/d3Bar.js'
 				// Draw objects
 				d3Table.draw(dataRows)
 				d3Stack.draw(dataRows, d3Table.updateFilter)
-				d3Map.draw(dataRows)
+				d3Map.draw(dataRows, d3LineChart.updateFilter, d3Pie.updateFilter)
 				d3LineChart.draw(dataRows)
+				d3Pie.draw(dataRows)
 				d3Sankey.draw(dataRows)
 				d3Bar.draw(dataRows)
 
