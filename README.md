@@ -4,7 +4,7 @@ Funding data of Telefilm Canada Visualization with D3
 INF8808: Data visualization\
 Presented to Prof. Thomas Hurtut\
 [Faye Satari](https://www.linkedin.com/in/fayesatari/)\
-[Banafsheh Mohajeri(https://www.linkedin.com/in/banafsheh-mohajeri-8ba1a3217/)\
+[Banafsheh Mohajeri](https://www.linkedin.com/in/banafsheh-mohajeri-8ba1a3217/)\
 [Mitra Lashkari](https://www.linkedin.com/in/mitra-lashkari/)\
 June 14, 2021
 
