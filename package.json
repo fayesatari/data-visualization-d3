@@ -1,16 +1,16 @@
 {
-  "name": "telefilm-canada-data-visualization",
-  "version": "1.0.0",
+  "name": "data-visualization-d3",
+  "version": "1.0.1",
   "description": "Funding data of Telefilm Canada visualization",
   "main": "src/index.js",
   "scripts": {
-    "build": "parcel build ./src/index.html --out-dir docs --public-url https://fayesatari.github.io/telefilm-canada-data-visualization/",
+    "build": "parcel build ./src/index.html --out-dir docs --public-url https://fayesatari.github.io/data-visualization-d3/",
     "start": "parcel ./src/index.html --log-level=2 --port=8080 --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fayesatari/telefilm-canada-data-visualization.git"
+    "url": "git+https://github.com/fayesatari/data-visualization-d3.git"
   },
   "author": "Fatemeh Sattaridaghian (2047588), Banafsheh Mohajeri (2092318), Mitra Lashkari (2105605)",
   "license": "UNLICENSED",
