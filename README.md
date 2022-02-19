@@ -8,7 +8,7 @@ Presented to Prof. Thomas Hurtut\
 [Mitra Lashkari](https://www.linkedin.com/in/mitra-lashkari/)\
 June 14, 2021
 
-[![Telefilm Canada Data Visualization (Presentation)](https://img.youtube.com/vi/f_D0IoAoNbg/0.jpg)](https://www.youtube.com/watch?v=f_D0IoAoNbg)
+[![Data Visualization with D3 (Telefilm Canada Presentation)](https://user-images.githubusercontent.com/71412070/154814063-90df645d-6bc3-4525-98f8-e2747af758c9.png)](https://www.youtube.com/watch?v=f_D0IoAoNbg)
 
 ## Overall Context
 
