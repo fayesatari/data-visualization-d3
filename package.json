@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/fayesatari/data-visualization-d3.git"
   },
-  "author": "Fatemeh Sattaridaghian (2047588), Banafsheh Mohajeri (2092318), Mitra Lashkari (2105605)",
+  "author": "Faye Satari (2047588), Banafsheh Mohajeri (2092318), Mitra Lashkari (2105605)",
   "license": "UNLICENSED",
   "dependencies": {
     "d3": "^5.16.0",
